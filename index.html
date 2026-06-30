@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nowshin Compiler IDE</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Fira+Code:wght@400;500;700&family=Inter:wght@400;600;700&display=swap"
+      rel="stylesheet" />
+    <link rel="stylesheet" href="style.css" />
+  </head>
+  <body>
+
+    <!-- Header -->
+    <header>
+      <div class="header-left">
+        <h1>Nowshin Compiler IDE</h1>
+        <div class="demo-bar" id="demoBar"></div>
+      </div>
+      <div class="editor-controls">
+        <button id="guideBtn" class="btn btn-guide">📖 Bangla Guide</button>
+        <button id="runBtn" class="btn run-btn">▶ Run Code</button>
+        <button id="saveBtn" class="btn">💾 Save (.ns)</button>
+        <label class="autorun-label">
+          <input type="checkbox" id="autoRun" /> Auto Run
+        </label>
+      </div>
+    </header>
+
+    <!-- Main IDE Container -->
+    <div class="main-container">
+      <div class="panel">
+        <div class="panel-header">Code Editor</div>
+        <div class="editor-wrapper">
+          <div class="line-numbers" id="lineNumbers"></div>
+          <textarea id="codeInput" spellcheck="false">shuru koro
+  // Example Code
+  dhoro i = 1;
+  jotokhon (i <= 5) {
+    dekhao "Count: " + i;
+    i = i + 1;
+  }
+shesh koro</textarea>
+          <pre id="highlight"></pre>
+        </div>
+      </div>
+
+      <div class="output-column">
+        <div class="panel">
+          <div class="panel-header">Token Breakdown</div>
+          <div class="token-area" id="tokenArea">
+            <!-- Tokens will be generated here -->
+          </div>
+        </div>
+        <div class="panel terminal-panel">
+          <div class="panel-header">Terminal Output</div>
+          <div class="terminal-screen" id="terminal"></div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Bangla Guide Modal -->
+    <div id="guideModal" class="modal-overlay">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h2>Nowshin Code Tutorial (বাংলা গাইড)</h2>
+          <button class="close-btn" id="closeModal">&times;</button>
+        </div>
+        <div class="modal-body">
+
+          <div class="guide-section">
+            <h3>১. প্রোগ্রাম শুরু ও শেষ (Program Structure)</h3>
+            <p>যেকোনো কোড লেখার আগে প্রোগ্রামকে বোঝাতে হবে কোথা থেকে কোড শুরু
+              এবং কোথায় শেষ।</p>
+            <ul>
+              <li><code>shuru koro</code> : প্রোগ্রামের শুরুতে লিখতে হবে।</li>
+              <li><code>shesh koro</code> : প্রোগ্রামের শেষে লিখতে হবে।</li>
+            </ul>
+          </div>
+
+          <div class="guide-section">
+            <h3>২. ভেরিয়েবল এবং আউটপুট (Variables & Print)</h3>
+            <p>কোনো ডাটা মেমোরিতে ধরে রাখতে ভেরিয়েবল ব্যবহার হয় এবং তা স্ক্রিনে
+              দেখাতে প্রিন্ট কমান্ড লাগে।</p>
+            <ul>
+              <li><code>dhoro x = 10;</code> : 'dhoro' কিওয়ার্ড দিয়ে নতুন
+                ভেরিয়েবল ডিক্লেয়ার করা হয়।</li>
+              <li><code>dekhao "Hello";</code> : টার্মিনালে কোনো টেক্সট বা
+                ভেরিয়েবলের মান প্রিন্ট করতে ব্যবহৃত হয়।</li>
+            </ul>
+          </div>
+
+          <div class="guide-section">
+            <h3>৩. কন্ডিশন / শর্ত (If-Else)</h3>
+            <p>লজিক চেক করার জন্য কন্ডিশনাল স্টেটমেন্ট ব্যবহার করা হয়।</p>
+            <ul>
+              <li><code>jodi (x > 5) { }</code> : যদি শর্তটি সত্যি হয়, তবে
+                ভেতরের কোড কাজ করবে।</li>
+              <li><code>nahole { }</code> : উপরের শর্তটি যদি মিথ্যা হয়, তবে এটি
+                কাজ করবে।</li>
+            </ul>
+          </div>
+
+          <div class="guide-section">
+            <h3>৪. লুপ বা চক্র (Loops)</h3>
+            <p>একই কাজ বারবার করার জন্য লুপ ব্যবহার করা হয়।</p>
+            <ul>
+              <li><code>jotokhon (i <= 5) { }</code> : শর্ত সত্যি থাকা পর্যন্ত
+                (While loop) কাজ করবে।</li>
+              <li><code>koro (dhoro i=0; i&lt;5; i=i+1) { }</code> : নির্দিষ্ট
+                সংখ্যক বার (For loop) চালানোর জন্য।</li>
+            </ul>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+    <div id="prompt-modal" class="modal-overlay">
+      <div class="prompt-box">
+        <div id="prompt-message" class="prompt-msg">Input required:</div>
+        <input type="text" id="prompt-input" class="prompt-input"
+          autocomplete="off" placeholder="Ekhane type koro..." />
+        <p class="prompt-hint">Press <strong>Enter</strong> to submit</p>
+      </div>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
